@@ -6,17 +6,12 @@
   </head>
   <body>
     <script>
-      var bowlingData = {
-                          "bowlers" = [{
-                                        "first_name" = "Michael"
-                                        "last_name" = "Phillips"
-                                        "scores" = [
-                                                     {"date" = "2021-09-09", "games" = [null,127,171]}
-                                                   ]
-                                       }]
-                         };
-      const data = JSON.parse(bowlingData);
-      console.log(date);
+      const bowler = `{
+                     "first_name": "Michael",
+                     "last_name": "Phillips"
+                   }`;
+      const data = JSON.parse(bowler);
+      console.log(data);
     </script>
   </body>
-</html>
+</html

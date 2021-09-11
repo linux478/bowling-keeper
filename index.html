@@ -6,16 +6,29 @@
   </head>
   <body>
     <script>
-      const bowler = `{
-                     "first_name": "Michael",
-                     "last_name": "Phillips",
-                     "scores": [
-                                 {"date": "2021-09-09", "game1": null, "game2": 127,"game3": 171}
-                               ]
-
-                   }`;
-      const data = JSON.parse(bowler);
-      console.log(data);
+      const centers = `[
+                         {
+                           "name": "Hi-Skor Lanes",
+                           "city": "Earlville"
+                           "state" "NY"
+                           "zip": "13332"
+                           "phone": "315-691-3211"
+                         }
+                        ]`'
+      const event_centers = `[
+                               {"center": 0, "event": 0}
+                             ]`'
+      const events = `[
+                        { "name": "Thursday Night Men", "date": "2021-09-09, "time": "19:00" }
+                      ]`;
+      const bowlers = `[
+                         { "first_name": "Michael", "last_name": "Phillips","hand": "left", "sanction": null }
+                       ]`;
+      const event_center_bowlers = `[
+                                      { "event_center_id": 0, bowler_id: 0, "lanes": "5-6", "game2": 127, "game3": 171 }
+                                    ]`;
+      const parse = JSON.parse(parse);
+      console.log(parse);
     </script>
   </body>
 </html>

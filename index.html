@@ -5,6 +5,8 @@
     </title>
   </head>
   <body>
+    <div id="output">
+    </div>
     <script>
       const centers = `[
                          {
@@ -28,6 +30,8 @@
                                       { "event_center_id": 0, bowler_id: 0, "lanes": "5-6", "game2": 127, "game3": 171 }
                                     ]`;
       const parse = JSON.parse(centers);
+      var output = document.getElementById('output');
+      output.innerHTML = 'new content';
       console.log(parse);
     </script>
   </body>

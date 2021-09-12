@@ -1,27 +1,95 @@
-<html>
+<!DOCTYPE html>
+<html lang="EN">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       Bowling Scores
     </title>
   </head>
   <body>
+    <div id="output"></div>
     <script>
-      const data = `{
-  "centers": { "name":  "Hi-Skor Lanes", "phone": "315-691-3211", "zip": "13332" },
 
-  "zipcode": {"zip":  "13332", "city": "Earlville", "state": "New York" },
+      const db = `{
+  "centers": [
+               { "id": 1, "name":  "Hi-Skor Lanes", "phone": "315-691-3211", "zip": "13332" }
+             ],
 
-  "event_centers": {"center": 0, "event": 0},
+  "zipcode": [
+               {"zip":  "13332", "city": "Earlville", "state": "New York" }
+             ],
 
-  "events": { "name": "Thursday Night Men", "date": "2021-09-09", "time": "19:00", "games": 3 },
+  "events_centers": [
+                     {"id": 1, "center": 1, "event": 1}
+                   ],
 
-  "bowlers": { "first_name": "Michael", "last_name": "Phillips", "hand": "left" },
+  "events": [
+              { "id": 1, "type": "League", "name": "Thursday Night Men", "date": "2021-09-09", "time": "19:00", "games": 3 }
+            ],
 
-  "event_center_bowlers": { "event_center_id": 0, "bowler_id": 0, "lanes": "5-6", "game2": 127, "game3": 171 }
+  "bowlers": [
+               { "sanction": -1, "first_name": "Michael", "last_name": "Phillips", "hand": "left" }
+             ],
+
+  "event_center_bowlers": [
+                            { "id": 1, "event_center_id": 1, "bowler_id": -1, "lanes": "5-6", "game2": 127, "game3": 171 }
+                          ]
 
 }`;
-      const parse = JSON.parse(data);
-      console.log(parse);
+      const input = db;
+      const data = JSON.parse(input);
+      display("home");
+   
+      function Handler(self, e) {
+        e.preventDefault();
+        var link = self.toString().split("/");
+        display(link[link.length - 1]);
+        return false;
+      }
+      function centerToEventsLink (aCenter) { return `<a href="eventsbycenter-${aCenter.id}" onclick="return Handler(this, event);">${aCenter.name}</a>`; }
+      function centersToHTML () {
+        var rtn = '<ul>';
+	for (i=0;i<data.centers.length; i++) {
+          rtn += "<li>" + centerToEventsLink(data.centers[i]) + "</li>";
+        }
+        rtn += "</ul>";
+        return rtn;
+      }
+      function eventsToEventDetails (aCenter) { return `<a href="event-${aCenter.id}" onclick="return Handler(this, event);>aCenter.name</a>`; }
+      function eventToString (aEvent) { return aEvent.name; }
+      function eventsToHTML () {
+        var rtn = '<ul>';
+	for (i=0;i<data.events.length; i++) {
+          rtn += "<li>" + eventToHTML(data.events[i]) + "</li>";
+        }
+        rtn += "</ul>";
+        return rtn;
+      }
+      function eventsByCenterToHTML (number) {
+        var rtn = '<ul>';
+	for (i=0;i<data.events.length; i++) {
+          if (data.events_centers[i].center == number) {
+	    rtn += "<li>" + eventToString(data.events[i]) + "</li>";
+          }
+        }
+        rtn += "</ul>";
+        return rtn;
+      }
+      function display (state) {
+        var page = state.split("-")[0];
+        var number = state.split("-")[1];
+        var output = "";
+
+        switch (page) {
+          case "eventsbycenter": output = eventsByCenterToHTML(number); break;
+          default:
+            output = `
+${centersToHTML(data)}
+`;
+        }
+        document.getElementById('output').innerHTML = output + "<h3>Data String</h3>" + JSON.stringify(data);
+      }
     </script>
   </body>
 </html>

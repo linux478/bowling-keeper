@@ -1,0 +1,14 @@
+{
+  "centers": { "name":  "Hi-Skor Lanes", "phone": "315-691-3211", "zip": "13332" },
+
+  "zipcode": {"zip":  "13332", "city": "Earlville", "state": "New York" },
+
+  "event_centers": {"center": 0, "event": 0},
+
+  "events": { "name": "Thursday Night Men", "date": "2021-09-09", "time": "19:00", "games": 3 },
+
+  "bowlers": { "first_name": "Michael", "last_name": "Phillips", "hand": "left" },
+
+  "event_center_bowlers": { "event_center_id": 0, "bowler_id": 0, "lanes": "5-6", "game2": 127, "game3": 171 }
+
+}
